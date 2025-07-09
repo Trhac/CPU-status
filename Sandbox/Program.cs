@@ -1,15 +1,26 @@
-﻿using System;
+﻿using Hardware.Info;
+using HardwareProviders.CPU;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HardwareProviders.CPU;
 
 namespace Sandbox
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            //BadMethod();
+
+            NewReadout();
+            Console.ReadKey();
+
+            
+        }
+
+        private static void BadMethod()
         {
             var cpu = Cpu.Discover();
             var i = 0;
@@ -34,7 +45,13 @@ namespace Sandbox
                 }
                 
             }
-            Console.ReadKey();
+        }
+
+        private static void NewReadout()
+        {
+            var hardwareInfo = new HardwareInfo();
+            hardwareInfo.RefreshAll();
+            var cpu = hardwareInfo.CpuList;
         }
     }
 }
